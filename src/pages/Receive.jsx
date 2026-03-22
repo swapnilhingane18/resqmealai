@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import FoodCard from '../components/FoodCard';
 
 const categories = ['All', 'Cooked', 'Raw', 'Packaged', 'Beverages'];
@@ -19,29 +20,41 @@ export default function Receive() {
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10 animate-fade-in-up">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-center mb-10"
+        >
           <h1 className="text-3xl sm:text-4xl font-bold text-text-primary">
             Available <span className="gradient-text">Food Listings</span>
           </h1>
           <p className="mt-3 text-text-secondary max-w-xl mx-auto">
             Browse surplus food near you and request a pickup for your community.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center gap-3 mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          {categories.map((cat) => (
-            <button
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          className="flex flex-wrap items-center gap-3 mb-8"
+        >
+          {categories.map((cat, idx) => (
+            <motion.button
               key={cat}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all ${
+              className={`px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors ${
                 activeCategory === cat
                   ? 'bg-primary/15 text-primary border border-primary/30'
                   : 'bg-dark-card text-text-secondary border border-border hover:border-primary/20 hover:text-text-primary'
               }`}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
 
           {/* Search */}
@@ -53,16 +66,16 @@ export default function Receive() {
               <input
                 type="text"
                 placeholder="Search food..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-dark-card border border-border text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-dark-card border border-border text-sm text-text-primary placeholder-text-muted transition-all focus:outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,198,255,0.15)]"
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Food Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          {dummyFoods.map((food) => (
-            <FoodCard key={food.id} {...food} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {dummyFoods.map((food, idx) => (
+            <FoodCard key={food.id} {...food} index={idx} />
           ))}
         </div>
       </div>

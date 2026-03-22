@@ -1,14 +1,17 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import Donate from './pages/Donate';
 import Receive from './pages/Receive';
 import Dashboard from './pages/Dashboard';
 
-export default function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
+  
   return (
-    <BrowserRouter>
-      <Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/donate" element={<Donate />} />
@@ -16,6 +19,14 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
+    </AnimatePresence>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
     </BrowserRouter>
   );
 }

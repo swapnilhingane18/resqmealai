@@ -1,15 +1,27 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 
 export default function MainLayout() {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen bg-dark-bg">
       <Navbar />
-      <main className="pt-16">
+      
+      <motion.main 
+        key={location.pathname}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -15 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="pt-16"
+      >
         <Outlet />
-      </main>
+      </motion.main>
+
       {/* Footer */}
-      <footer className="border-t border-border mt-20">
+      <footer className="border-t border-border mt-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">

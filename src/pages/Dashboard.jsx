@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import StatsCard from '../components/StatsCard';
 
 const donationHistory = [
@@ -30,32 +31,41 @@ export default function Dashboard() {
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-10 animate-fade-in-up">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="mb-10"
+        >
           <h1 className="text-3xl sm:text-4xl font-bold text-text-primary">
             Your <span className="gradient-text">Dashboard</span>
           </h1>
           <p className="mt-3 text-text-secondary">Track your donations, impact, and incoming requests.</p>
-        </div>
+        </motion.div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           <StatsCard
+            index={0}
             title="Total Donations"
             value="47"
             icon={<svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>}
           />
           <StatsCard
+            index={1}
             title="Meals Delivered"
             value="1280"
             suffix="+"
             icon={<svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
           />
           <StatsCard
+            index={2}
             title="NGOs Connected"
             value="12"
             icon={<svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>}
           />
           <StatsCard
+            index={3}
             title="Success Rate"
             value="94"
             suffix="%"
@@ -64,7 +74,13 @@ export default function Dashboard() {
         </div>
 
         {/* Donation History */}
-        <div className="glass-card rounded-2xl p-6 mb-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+          className="glass-card rounded-2xl p-6 mb-10 border border-border"
+        >
           <h2 className="text-xl font-bold text-text-primary mb-6">Donation History</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -78,8 +94,15 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {donationHistory.map((item) => (
-                  <tr key={item.id} className="border-b border-border/50 hover:bg-white/[0.02] transition-colors">
+                {donationHistory.map((item, idx) => (
+                  <motion.tr 
+                    key={item.id} 
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + (idx * 0.1) }}
+                    className="border-b border-border/50 hover:bg-white/[0.02] transition-colors"
+                  >
                     <td className="py-3.5 px-4 text-text-primary font-medium">{item.food}</td>
                     <td className="py-3.5 px-4 text-text-secondary">{item.qty}</td>
                     <td className="py-3.5 px-4 text-text-secondary hidden sm:table-cell">{item.date}</td>
@@ -89,37 +112,59 @@ export default function Dashboard() {
                       </span>
                     </td>
                     <td className="py-3.5 px-4 text-text-secondary hidden md:table-cell">{item.ngo}</td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
 
         {/* Active Requests */}
-        <div className="glass-card rounded-2xl p-6 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+          className="glass-card rounded-2xl p-6 border border-border"
+        >
           <h2 className="text-xl font-bold text-text-primary mb-6">Active Requests</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {requests.map((req) => (
-              <div key={req.id} className="p-5 rounded-xl bg-dark-bg/50 border border-border hover:border-primary/20 transition-all space-y-3">
+            {requests.map((req, idx) => (
+              <motion.div 
+                key={req.id} 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + (idx * 0.1) }}
+                whileHover={{ y: -5, borderColor: 'rgba(0, 198, 255, 0.3)', boxShadow: '0 5px 20px -5px rgba(0, 198, 255, 0.15)' }}
+                className="p-5 rounded-xl bg-dark-bg/50 border border-border transition-colors space-y-3 cursor-pointer"
+              >
                 <div className="flex items-start justify-between">
                   <h3 className="font-semibold text-text-primary">{req.ngo}</h3>
-                  <span className={`px-2 py-0.5 rounded-lg text-xs font-semibold ${urgencyColors[req.urgency]}`}>
+                  <motion.span 
+                    animate={req.urgency === 'High' ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                    className={`px-2 py-0.5 rounded-lg text-xs font-semibold ${urgencyColors[req.urgency]}`}
+                  >
                     {req.urgency}
-                  </span>
+                  </motion.span>
                 </div>
                 <div className="space-y-1.5 text-sm text-text-secondary">
                   <p>Type: {req.type}</p>
                   <p>Qty: {req.qty}</p>
                   <p>📍 {req.location}</p>
                 </div>
-                <button className="w-full py-2 rounded-xl text-sm font-semibold bg-primary/10 text-primary hover:bg-primary/20 transition-colors cursor-pointer">
+                <motion.button 
+                  whileHover={{ backgroundColor: 'rgba(0, 198, 255, 0.2)' }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full py-2 rounded-xl text-sm font-semibold bg-primary/10 text-primary transition-colors"
+                >
                   Accept Request
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
