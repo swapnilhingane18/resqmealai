@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Button from './Button';
 
 export default function UploadForm() {
@@ -28,17 +29,23 @@ export default function UploadForm() {
     console.log('Form submitted:', formData);
   };
 
-  const inputClasses = 'w-full px-4 py-3 rounded-xl bg-dark-bg border border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm';
+  const inputClasses = 'w-full px-4 py-3 rounded-xl bg-dark-bg border border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm shadow-sm focus:shadow-[0_0_15px_rgba(0,198,255,0.15)]';
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 space-y-5">
-      <div>
+    <motion.form 
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      onSubmit={handleSubmit} 
+      className="glass-card rounded-2xl p-6 space-y-5 border border-border"
+    >
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
         <h2 className="text-xl font-bold text-text-primary">Donate Food</h2>
         <p className="text-sm text-text-secondary mt-1">Fill in the details to list your surplus food.</p>
-      </div>
+      </motion.div>
 
       <div className="space-y-4">
-        <div>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
           <label className="block text-sm font-medium text-text-secondary mb-1.5">Food Name</label>
           <input
             type="text"
@@ -48,10 +55,10 @@ export default function UploadForm() {
             placeholder="e.g. Cooked Rice, Fresh Vegetables"
             className={inputClasses}
           />
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
             <label className="block text-sm font-medium text-text-secondary mb-1.5">Quantity</label>
             <input
               type="text"
@@ -61,8 +68,8 @@ export default function UploadForm() {
               placeholder="e.g. 5 kg, 20 servings"
               className={inputClasses}
             />
-          </div>
-          <div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
             <label className="block text-sm font-medium text-text-secondary mb-1.5">Expiry Time</label>
             <input
               type="datetime-local"
@@ -71,10 +78,10 @@ export default function UploadForm() {
               onChange={handleChange}
               className={inputClasses}
             />
-          </div>
+          </motion.div>
         </div>
 
-        <div>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
           <label className="block text-sm font-medium text-text-secondary mb-1.5">Location</label>
           <input
             type="text"
@@ -84,10 +91,10 @@ export default function UploadForm() {
             placeholder="e.g. 123 MG Road, Mumbai"
             className={inputClasses}
           />
-        </div>
+        </motion.div>
 
         {/* Image Upload */}
-        <div>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
           <label className="block text-sm font-medium text-text-secondary mb-1.5">Food Image</label>
           <div className="relative">
             <input
@@ -97,12 +104,20 @@ export default function UploadForm() {
               className="hidden"
               id="food-image-upload"
             />
-            <label
+            <motion.label
+              whileHover={{ scale: 1.01, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
+              whileTap={{ scale: 0.99 }}
               htmlFor="food-image-upload"
               className="flex items-center justify-center w-full py-8 rounded-xl border-2 border-dashed border-border hover:border-primary/40 transition-colors cursor-pointer bg-dark-bg/50"
             >
               {imagePreview ? (
-                <img src={imagePreview} alt="Preview" className="max-h-40 rounded-lg object-cover" />
+                <motion.img 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  src={imagePreview} 
+                  alt="Preview" 
+                  className="max-h-40 rounded-lg object-cover shadow-lg" 
+                />
               ) : (
                 <div className="text-center">
                   <svg className="w-8 h-8 mx-auto text-text-muted mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -112,14 +127,16 @@ export default function UploadForm() {
                   <p className="text-xs text-text-muted mt-1">PNG, JPG up to 5MB</p>
                 </div>
               )}
-            </label>
+            </motion.label>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <Button type="submit" className="w-full">
-        Submit Donation
-      </Button>
-    </form>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+        <Button type="submit" className="w-full mt-2">
+          Submit Donation
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 }

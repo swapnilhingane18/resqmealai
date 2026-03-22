@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
-export default function StatsCard({ title, value, icon, suffix = '' }) {
+export default function StatsCard({ title, value, icon, suffix = '', index = 0 }) {
   const [displayValue, setDisplayValue] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
+    if (!isInView) return;
+
     const numericValue = parseInt(value, 10);
     if (isNaN(numericValue)) {
       setDisplayValue(value);
@@ -24,10 +30,17 @@ export default function StatsCard({ title, value, icon, suffix = '' }) {
     }, 16);
 
     return () => clearInterval(timer);
-  }, [value]);
+  }, [value, isInView]);
 
   return (
-    <div className="glass-card rounded-2xl p-6 group hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 20 }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="glass-card rounded-2xl p-6 group hover:border-primary/30 transition-colors duration-300"
+    >
       <div className="flex items-start justify-between">
         <div className="space-y-2">
           <p className="text-sm font-medium text-text-muted">{title}</p>
@@ -40,6 +53,6 @@ export default function StatsCard({ title, value, icon, suffix = '' }) {
           {icon}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
