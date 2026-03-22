@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import StatsCard from '../components/StatsCard';
 
@@ -46,6 +47,26 @@ const stats = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
 export default function Home() {
   return (
     <div>
@@ -53,30 +74,49 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+          <motion.div 
+            animate={{ 
+              y: [0, -20, 0],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" 
+          />
+          <motion.div 
+            animate={{ 
+              y: [0, 20, 0],
+              opacity: [0.5, 0.7, 0.5]
+            }}
+            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" 
+          />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center max-w-4xl mx-auto space-y-8 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center max-w-4xl mx-auto space-y-8"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               AI-Powered Food Rescue Platform
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight">
               Reduce Food Waste{' '}
               <br className="hidden sm:block" />
               <span className="gradient-text">with AI</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
               Connect surplus food donors with NGOs and communities in need. 
               Our AI ensures food reaches the right hands before it's too late.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link to="/donate">
                 <Button variant="primary" className="px-8 py-4 text-base">
                   <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -93,23 +133,29 @@ export default function Home() {
                   Find Food
                 </Button>
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
               Making a <span className="gradient-text">Real Impact</span>
             </h2>
             <p className="mt-3 text-text-secondary">Our growing community of food heroes, by the numbers.</p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat) => (
-              <StatsCard key={stat.title} {...stat} />
+            {stats.map((stat, idx) => (
+              <StatsCard key={stat.title} {...stat} index={idx} />
             ))}
           </div>
         </div>
@@ -118,12 +164,19 @@ export default function Home() {
       {/* How It Works */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
               How It <span className="gradient-text">Works</span>
             </h2>
             <p className="mt-3 text-text-secondary">Three simple steps to rescue food and make a difference.</p>
-          </div>
+          </motion.div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -156,15 +209,27 @@ export default function Home() {
                   </svg>
                 ),
               },
-            ].map((item) => (
-              <div key={item.step} className="glass-card rounded-2xl p-8 text-center group hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-5 text-primary group-hover:from-primary/30 group-hover:to-secondary/30 transition-all">
+            ].map((item, idx) => (
+              <motion.div 
+                key={item.step} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.15, ease: 'easeOut' }}
+                whileHover={{ y: -5, borderColor: 'rgba(0, 198, 255, 0.4)' }}
+                className="glass-card border border-border rounded-2xl p-8 text-center group transition-colors duration-300"
+              >
+                <motion.div 
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-5 text-primary group-hover:from-primary/30 group-hover:to-secondary/30 transition-all"
+                >
                   {item.icon}
-                </div>
+                </motion.div>
                 <div className="text-xs font-bold text-primary/60 mb-2">{item.step}</div>
                 <h3 className="text-lg font-bold text-text-primary mb-2">{item.title}</h3>
                 <p className="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
