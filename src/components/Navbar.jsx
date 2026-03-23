@@ -2,16 +2,24 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/donor/dashboard', label: 'Dashboard' },
-  { path: '/donor/upload', label: 'Upload Food' },
-  { path: '/donor/impact', label: 'Impact' },
-];
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+
+  const isNgo = location.pathname.startsWith('/ngo');
+  const navLinks = isNgo 
+    ? [
+        { path: '/', label: 'Home' },
+        { path: '/ngo/dashboard', label: 'Command Center' },
+        { path: '/ngo/available', label: 'Live Rescues' },
+        { path: '/ngo/tracking', label: 'Pickups' },
+      ]
+    : [
+        { path: '/', label: 'Home' },
+        { path: '/donor/dashboard', label: 'Donor Hub' },
+        { path: '/donor/upload', label: 'Log Donation' },
+        { path: '/donor/impact', label: 'Impact' },
+      ];
 
   return (
     <motion.nav 
