@@ -93,33 +93,33 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[100px]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative max-w-7xl mx-auto px-6 py-20">
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="text-center max-w-4xl mx-auto space-y-8"
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary">
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary font-medium tracking-wide">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               AI-Powered Food Rescue Platform
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-white">
               Reduce Food Waste{' '}
               <br className="hidden sm:block" />
-              <span className="gradient-text">with AI</span>
+              <span className="text-primary">with AI</span>
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Connect surplus food donors with NGOs and communities in need. 
               Our AI ensures food reaches the right hands before it's too late.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link to="/donate">
-                <Button variant="primary" className="px-8 py-4 text-base">
-                  <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <Button variant="primary" className="px-8 py-4 text-base shadow-[0_0_20px_rgba(0,198,255,0.2)]">
+                  <svg className="w-5 h-5 mr-4 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
                   Donate Food
@@ -127,7 +127,7 @@ export default function Home() {
               </Link>
               <Link to="/receive">
                 <Button variant="secondary" className="px-8 py-4 text-base">
-                  <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-5 h-5 mr-3 -ml-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                   </svg>
                   Find Food
@@ -140,7 +140,7 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,10 +148,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-              Making a <span className="gradient-text">Real Impact</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Making a <span className="text-primary">Real Impact</span>
             </h2>
-            <p className="mt-3 text-text-secondary">Our growing community of food heroes, by the numbers.</p>
+            <p className="mt-3 text-gray-400">Our growing community of food heroes, by the numbers.</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, idx) => (
@@ -162,8 +162,8 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative border-t border-[#1f2937]/50 mt-10">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -171,10 +171,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-              How It <span className="gradient-text">Works</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              How It <span className="text-primary">Works</span>
             </h2>
-            <p className="mt-3 text-text-secondary">Three simple steps to rescue food and make a difference.</p>
+            <p className="mt-3 text-gray-400">Three simple steps to rescue food and make a difference.</p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -217,18 +217,18 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.15, ease: 'easeOut' }}
                 whileHover={{ y: -5, borderColor: 'rgba(0, 198, 255, 0.4)' }}
-                className="glass-card border border-border rounded-2xl p-8 text-center group transition-colors duration-300"
+                className="bg-[#111827] border border-[#1f2937] rounded-2xl p-8 text-center group transition-colors duration-300"
               >
                 <motion.div 
                   whileHover={{ rotate: 5, scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-5 text-primary group-hover:from-primary/30 group-hover:to-secondary/30 transition-all"
+                  className="w-14 h-14 rounded-2xl bg-[#0B0F19] border border-[#1f2937] flex items-center justify-center mx-auto mb-5 text-primary group-hover:border-primary/50 transition-all"
                 >
                   {item.icon}
                 </motion.div>
-                <div className="text-xs font-bold text-primary/60 mb-2">{item.step}</div>
-                <h3 className="text-lg font-bold text-text-primary mb-2">{item.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
+                <div className="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">{item.step}</div>
+                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
