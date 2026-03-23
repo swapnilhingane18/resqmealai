@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import StatsCard from '../components/StatsCard';
+import Map from '../components/Map';
 
 const donationHistory = [
   { id: 1, food: 'Cooked Rice & Dal', qty: '15 servings', date: '2026-03-20', status: 'Delivered', ngo: 'FoodAid Foundation' },
@@ -15,21 +16,21 @@ const requests = [
 ];
 
 const statusColors = {
-  Delivered: 'text-success bg-success/10',
-  'Picked Up': 'text-primary bg-primary/10',
-  Expired: 'text-danger bg-danger/10',
+  Delivered: 'text-success bg-success/10 border border-success/20',
+  'Picked Up': 'text-primary bg-primary/10 border border-primary/20',
+  Expired: 'text-danger bg-danger/10 border border-danger/20',
 };
 
 const urgencyColors = {
-  High: 'text-danger bg-danger/10',
-  Medium: 'text-warning bg-warning/10',
-  Low: 'text-success bg-success/10',
+  High: 'text-danger bg-danger/10 border border-danger/20',
+  Medium: 'text-warning bg-warning/10 border border-warning/20',
+  Low: 'text-success bg-success/10 border border-success/20',
 };
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -37,10 +38,10 @@ export default function Dashboard() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="mb-10"
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-text-primary">
-            Your <span className="gradient-text">Dashboard</span>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            System <span className="text-primary">Overview</span>
           </h1>
-          <p className="mt-3 text-text-secondary">Track your donations, impact, and incoming requests.</p>
+          <p className="mt-2 text-gray-400">Track real-time rescue operations, active metrics, and pending dispatches.</p>
         </motion.div>
 
         {/* Stats */}
@@ -73,7 +74,12 @@ export default function Dashboard() {
           />
         </div>
 
-        {/* Donation History */}
+        {/* Map Section */}
+        <div className="mb-10">
+          <Map />
+        </div>
+
+        {/* Donation History Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
