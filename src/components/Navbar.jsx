@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/donate', label: 'Donate' },
-  { path: '/receive', label: 'Receive' },
-  { path: '/dashboard', label: 'Dashboard' },
+  { path: '/donor/dashboard', label: 'Dashboard' },
+  { path: '/donor/upload', label: 'Upload Food' },
+  { path: '/donor/impact', label: 'Impact' },
 ];
 
 export default function Navbar() {
