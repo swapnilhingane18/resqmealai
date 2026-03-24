@@ -11,7 +11,7 @@ const recentDonations = [
 
 export default function DonorDashboard() {
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div 

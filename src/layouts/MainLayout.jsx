@@ -20,7 +20,7 @@ export default function MainLayout() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="pt-[72px]"
+          className="pt-24 pb-10"
         >
           <Outlet />
         </motion.main>
