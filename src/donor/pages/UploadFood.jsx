@@ -21,6 +21,8 @@ export default function UploadFood() {
           </p>
         </motion.div>
 
+        <hr className="border-t border-white/10 my-10" />
+
         {/* Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mt-8">
           <div className="w-full bg-[#111827] border border-[#1f2937] rounded-3xl p-6">

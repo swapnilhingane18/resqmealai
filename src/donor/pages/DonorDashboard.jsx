@@ -84,6 +84,8 @@ export default function DonorDashboard() {
           </motion.div>
         </div>
 
+        <hr className="border-t border-white/10 my-10" />
+
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
