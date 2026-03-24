@@ -21,10 +21,10 @@ export default function DonorDashboard() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10"
         >
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
               Donor <span className="text-primary">Overview</span>
             </h1>
-            <p className="mt-2 text-gray-400">Track your contributions, active pickups, and environmental impact.</p>
+            <p className="mt-3 text-lg text-gray-500 font-medium">Track your contributions, active pickups, and environmental impact.</p>
           </div>
           <Link to="/donor/upload">
             <Button variant="primary" className="shrink-0 gap-2">
@@ -97,8 +97,8 @@ export default function DonorDashboard() {
               className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6 sm:p-8 h-full"
             >
               <div className="flex items-center justify-between mb-8">
-                <h2 className="text-xl font-bold text-white">Recent Donations</h2>
-                <button className="text-sm text-primary hover:text-white transition-colors">View All</button>
+                <h2 className="text-sm font-black text-white/90 uppercase tracking-widest">Recent Donations</h2>
+                <button className="text-xs font-bold text-primary hover:text-white transition-colors uppercase tracking-wider">View All</button>
               </div>
 
               <div className="space-y-4">
@@ -168,7 +168,7 @@ export default function DonorDashboard() {
               transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
               className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6"
             >
-              <h2 className="text-base font-bold text-white mb-5 uppercase tracking-wide">Impact Summary</h2>
+              <h2 className="text-sm font-black text-white/90 uppercase tracking-widest mb-6">Impact Summary</h2>
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-[#0B0F19] border border-[#1f2937] flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success shrink-0">
@@ -204,7 +204,7 @@ export default function DonorDashboard() {
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
               className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6"
             >
-              <h2 className="text-base font-bold text-white mb-4 uppercase tracking-wide">Weekly Activity</h2>
+              <h2 className="text-sm font-black text-white/90 uppercase tracking-widest mb-6">Weekly Activity</h2>
               <div className="flex items-end justify-between h-20 gap-2 px-1">
                 {[4, 7, 3, 8, 5, 10, 6].map((h, i) => (
                   <div key={i} className="w-full bg-[#0B0F19] rounded-t-md relative group">

@@ -13,10 +13,10 @@ export default function UploadFood() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="mb-10"
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
             Log New <span className="text-primary">Donation</span>
           </h1>
-          <p className="mt-2 text-gray-400 max-w-2xl">
+          <p className="mt-3 text-lg text-gray-500 font-medium max-w-2xl">
             Enter the details of your surplus food. Our AI engine will instantly scan freshness and auto-route to the best matching NGO.
           </p>
         </motion.div>

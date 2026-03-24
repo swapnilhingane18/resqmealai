@@ -22,11 +22,11 @@ export default function Impact() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
           
           <div className="relative z-10 space-y-4 max-w-xl">
-            <h2 className="text-sm font-bold text-primary uppercase tracking-widest">Lifetime Impact</h2>
-            <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+            <h2 className="text-sm font-black text-primary uppercase tracking-widest">Lifetime Impact</h2>
+            <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tighter leading-[1.1]">
               You have fed <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] to-[#22D3EE]">684 people</span>
             </h1>
-            <p className="text-lg text-gray-400">
+            <p className="text-lg text-gray-500 font-medium pt-2">
               Your consistent contributions are making a tangible difference in reducing local food insecurity and carbon emissions.
             </p>
           </div>
