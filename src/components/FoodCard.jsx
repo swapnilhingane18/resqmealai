@@ -52,7 +52,7 @@ export default function FoodCard({ name, quantity, location, urgency = 'Medium',
       </div>
 
       {/* Content */}
-      <div className="p-5 relative z-20">
+      <div className="p-6 relative z-20 space-y-4 flex flex-col h-full">
         <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">{name}</h3>
         
         <div className="space-y-2 mt-3 mb-4">
@@ -72,7 +72,7 @@ export default function FoodCard({ name, quantity, location, urgency = 'Medium',
         </div>
 
         {/* Footer actions or assigned NGO */}
-        <div className="pt-4 border-t border-[#1f2937]/50 flex items-center justify-between">
+        <div className="pt-4 border-t border-[#1f2937]/50 flex items-center justify-between mt-auto">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
             <span className="text-xs text-cyan-500 font-medium">Ready for Dispatch</span>
