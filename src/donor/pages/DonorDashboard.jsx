@@ -60,58 +60,106 @@ export default function DonorDashboard() {
           />
         </div>
 
-        {/* Recent Activity */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6 sm:p-8"
-        >
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xl font-bold text-white">Recent Donations</h2>
-            <button className="text-sm text-primary hover:text-white transition-colors">View All</button>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Left Column: Recent Activity */}
+          <div className="lg:col-span-2 space-y-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6 sm:p-8 h-full"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-xl font-bold text-white">Recent Donations</h2>
+                <button className="text-sm text-primary hover:text-white transition-colors">View All</button>
+              </div>
+
+              <div className="space-y-4">
+                {recentDonations.map((item, idx) => (
+                  <motion.div 
+                    key={item.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-2xl bg-[#0B0F19] border border-[#1f2937] hover:border-primary/20 transition-colors gap-4"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">{item.food}</h4>
+                        <p className="text-sm text-gray-400 mt-1">{item.qty} • {item.date}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between sm:justify-end gap-6 sm:w-1/3">
+                      <div className="text-left sm:text-right">
+                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Impact</p>
+                        <p className="text-sm font-bold text-success">{item.impact}</p>
+                      </div>
+                      <div className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider shrink-0 ${
+                        item.status === 'Delivered' 
+                          ? 'bg-success/10 text-success border border-success/20' 
+                          : 'bg-primary/10 text-primary border border-primary/20'
+                      }`}>
+                        {item.status}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          <div className="space-y-4">
-            {recentDonations.map((item, idx) => (
-              <motion.div 
-                key={item.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-2xl bg-[#0B0F19] border border-[#1f2937] hover:border-primary/20 transition-colors gap-4"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+          {/* Right Column: Impact Summary */}
+          <div className="lg:col-span-1 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+              className="bg-[#111827] border border-[#1f2937] rounded-3xl p-6 sm:p-8"
+            >
+              <h2 className="text-xl font-bold text-white mb-6">Impact Summary</h2>
+              <div className="space-y-6">
+                <div className="p-5 rounded-2xl bg-[#0B0F19] border border-[#1f2937] flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center text-success shrink-0">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">{item.food}</h4>
-                    <p className="text-sm text-gray-400 mt-1">{item.qty} • {item.date}</p>
+                    <h3 className="text-white font-bold text-lg">684 Meals</h3>
+                    <p className="text-xs text-gray-400 mt-0.5">Total provided to communities</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between sm:justify-end gap-6 sm:w-1/3">
-                  <div className="text-left sm:text-right">
-                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Estimated Impact</p>
-                    <p className="text-sm font-bold text-success">{item.impact}</p>
+                <div className="p-5 rounded-2xl bg-[#0B0F19] border border-[#1f2937] flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+                    </svg>
                   </div>
-                  <div className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider ${
-                    item.status === 'Delivered' 
-                      ? 'bg-success/10 text-success border border-success/20' 
-                      : 'bg-primary/10 text-primary border border-primary/20'
-                  }`}>
-                    {item.status}
+                  <div>
+                    <h3 className="text-white font-bold text-lg">855 kg CO₂</h3>
+                    <p className="text-xs text-gray-400 mt-0.5">Emissions prevented</p>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+              <button className="w-full mt-6 py-3 rounded-xl border border-[#1f2937] text-sm text-gray-300 font-bold hover:bg-[#1f2937]/50 hover:text-white transition-all">
+                Full Impact Report
+              </button>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </div>
   );
