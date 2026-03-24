@@ -22,11 +22,11 @@ export default function UploadFood() {
         </motion.div>
 
         {/* Content Layout */}
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-          <div className="w-full lg:w-2/3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mt-8">
+          <div className="w-full bg-[#111827] border border-[#1f2937] rounded-3xl p-6">
             <UploadForm />
           </div>
-          <div className="w-full lg:w-1/3 lg:sticky lg:top-24">
+          <div className="w-full lg:sticky lg:top-28 bg-[#111827] border border-[#1f2937] rounded-3xl p-6">
             <AIInsightsCard freshness={87} riskLevel="Low" timeRemaining="4h 30m" />
           </div>
         </div>
