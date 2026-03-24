@@ -45,22 +45,22 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="relative px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+                  className={`relative px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                    isActive ? 'text-white bg-primary/10 border border-primary/20 shadow-[0_4px_20px_-10px_rgba(0,198,255,0.4)]' : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`}
                 >
-                  <span className={`relative z-10 ${isActive ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}>
-                    {link.label}
-                  </span>
+                  <span className="relative z-10">{link.label}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-primary/10 rounded-xl"
+                      className="absolute inset-x-0 -bottom-1 h-0.5 bg-primary rounded-t-full shadow-[0_0_10px_#00C6FF]"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   )}
