@@ -37,7 +37,7 @@ export default function DonorDashboard() {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 mb-8">
           <StatsCard
             index={0}
             title="Total Food Donated"
@@ -66,7 +66,7 @@ export default function DonorDashboard() {
             className="bg-[#111827] border border-[#1f2937] hover:border-primary/30 rounded-2xl p-6 group transition-all duration-300 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
-            <div className="relative z-10 flex flex-col justify-between h-full">
+            <div className="relative z-10 flex flex-col justify-between h-full space-y-4">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Next Milestone</p>
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
@@ -85,7 +85,7 @@ export default function DonorDashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Left Column: Recent Activity */}
           <div className="lg:col-span-2 space-y-8">
