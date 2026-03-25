@@ -99,7 +99,7 @@ export default function Navbar() {
             
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors"
+              className="md:hidden p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
               aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -121,7 +121,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden border-t border-border bg-dark-bg/95 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-[#1f2937] bg-[#0B0F19]/95 backdrop-blur-xl"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link) => (
@@ -132,7 +132,7 @@ export default function Navbar() {
                   className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all ${
                     location.pathname === link.path
                       ? 'bg-primary/10 text-primary'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {link.label}

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function UploadFood() {
   const [formData, setFormData] = useState({ name: '', quantity: '', image: null });
   const [mode, setMode] = useState('form'); // 'form' | 'scanning' | 'assigned'
   const [scanText, setScanText] = useState('Analyzing food condition...');
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
