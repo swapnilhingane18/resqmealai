@@ -1,12 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
-  const isNgo = location.pathname.startsWith('/ngo');
+  const isNgo = user?.role === 'ngo';
+  const isDonor = user?.role === 'donor';
+
   const navLinks = isNgo 
     ? [
         { path: '/', label: 'Home' },
@@ -14,12 +18,16 @@ export default function Navbar() {
         { path: '/ngo/available', label: 'Live Rescues' },
         { path: '/ngo/tracking', label: 'Pickups' },
       ]
-    : [
-        { path: '/', label: 'Home' },
-        { path: '/donor/dashboard', label: 'Donor Hub' },
-        { path: '/donor/upload', label: 'Log Donation' },
-        { path: '/donor/impact', label: 'Impact' },
-      ];
+    : isDonor 
+      ? [
+          { path: '/', label: 'Home' },
+          { path: '/donor/dashboard', label: 'Donor Hub' },
+          { path: '/donor/upload', label: 'Log Donation' },
+          { path: '/donor/impact', label: 'Impact' },
+        ]
+      : [
+          { path: '/', label: 'Home' }
+        ];
 
   return (
     <motion.nav 
@@ -35,13 +43,13 @@ export default function Navbar() {
             <motion.div 
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20"
+              className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00C6FF] to-[#22D3EE] flex items-center justify-center shadow-lg shadow-primary/20"
             >
-              <svg className="w-5 h-5 text-dark-bg" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#0B0F19]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
               </svg>
             </motion.div>
-            <span className="text-xl font-bold gradient-text">ResQMeal</span>
+            <span className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] to-[#22D3EE] tracking-tight">ResQMeal</span>
           </Link>
 
           {/* Desktop Links */}
@@ -69,15 +77,25 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Login + Hamburger */}
+          {/* Login / Profile + Hamburger */}
           <div className="flex items-center gap-3">
-            <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0, 198, 255, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:inline-flex px-5 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-dark-bg transition-colors"
-            >
-              Login
-            </motion.button>
+            <div className="hidden md:flex gap-3">
+              {user ? (
+                <button 
+                  onClick={logout}
+                  className="px-5 py-2 rounded-xl text-sm font-bold border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <Link to="/login">
+                  <button className="px-5 py-2 rounded-xl text-sm font-bold bg-primary text-[#0B0F19] hover:bg-secondary transition-colors shadow-lg shadow-primary/20">
+                    Login Platform
+                  </button>
+                </Link>
+              )}
+            </div>
+            
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-xl text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors"
@@ -110,7 +128,7 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all ${
                     location.pathname === link.path
                       ? 'bg-primary/10 text-primary'
                       : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
@@ -119,9 +137,23 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <button className="w-full mt-2 px-5 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-dark-bg">
-                Login
-              </button>
+              
+              <div className="mt-4 pt-4 border-t border-[#1f2937]">
+                {user ? (
+                  <button 
+                    onClick={() => { logout(); setIsOpen(false); }}
+                    className="w-full px-5 py-3 rounded-xl text-sm font-bold border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                  >
+                    Sign Out
+                  </button>
+                ) : (
+                  <Link to="/login" onClick={() => setIsOpen(false)}>
+                    <button className="w-full px-5 py-3 rounded-xl text-sm font-bold bg-primary text-[#0B0F19] hover:bg-secondary transition-colors shadow-lg shadow-primary/20">
+                      Login Platform
+                    </button>
+                  </Link>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
