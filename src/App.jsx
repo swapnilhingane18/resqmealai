@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import DonorDashboard from './donor/pages/DonorDashboard';
 import UploadFood from './donor/pages/UploadFood';
+import Tracking from './donor/pages/Tracking';
 import Impact from './donor/pages/Impact';
 import NgoDashboard from './ngo/pages/NgoDashboard';
 import AvailableFood from './ngo/pages/AvailableFood';
@@ -33,6 +34,7 @@ function AnimatedRoutes() {
           {/* Donor Routes */}
           <Route path="/donor/dashboard" element={<ProtectedRoute allowedRole="donor"><DonorDashboard /></ProtectedRoute>} />
           <Route path="/donor/upload" element={<ProtectedRoute allowedRole="donor"><UploadFood /></ProtectedRoute>} />
+          <Route path="/donor/tracking" element={<ProtectedRoute allowedRole="donor"><Tracking /></ProtectedRoute>} />
           <Route path="/donor/impact" element={<ProtectedRoute allowedRole="donor"><Impact /></ProtectedRoute>} />
           
           {/* NGO Routes */}
