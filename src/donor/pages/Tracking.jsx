@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
-  { label: 'Donation Listed', sub: 'Approved by AI' },
-  { label: 'NGO Auto-Assigned', sub: 'Community Hope Center accepted' },
-  { label: 'Out for Pickup', sub: 'Driver is approaching' },
-  { label: 'Picked Up', sub: 'Food successfully rescued!' },
+  { label: 'Donation Listed', sub: 'Approved by AI', time: '2:15 PM' },
+  { label: 'NGO Auto-Assigned', sub: 'Community Hope Center accepted', time: '2:18 PM' },
+  { label: 'Out for Pickup', sub: 'Driver is approaching', time: '2:31 PM' },
+  { label: 'Picked Up', sub: 'Food successfully rescued!', time: '' },
 ];
 
 export default function Tracking() {
@@ -197,12 +197,18 @@ export default function Tracking() {
                       <motion.div
                         animate={{ opacity: isReached ? 1 : 0.35 }}
                         transition={{ duration: 0.6 }}
+                        className="flex-1"
                       >
-                        <h4 className={`font-bold text-lg transition-colors duration-500 ${
-                          isCurrent ? 'text-white' : isReached ? 'text-gray-300' : 'text-gray-600'
-                        }`}>
-                          {s.label}
-                        </h4>
+                        <div className="flex items-center gap-3">
+                          <h4 className={`font-bold text-lg transition-colors duration-500 ${
+                            isCurrent ? 'text-white' : isReached ? 'text-gray-300' : 'text-gray-600'
+                          }`}>
+                            {s.label}
+                          </h4>
+                          {isReached && s.time && (
+                            <span className="text-xs text-gray-500 font-medium">{s.time}</span>
+                          )}
+                        </div>
                         <AnimatePresence mode="wait">
                           <motion.p
                             key={isCurrent ? 'active' : 'default'}
