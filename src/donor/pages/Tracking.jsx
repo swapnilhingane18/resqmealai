@@ -123,17 +123,24 @@ export default function Tracking() {
             </div>
 
             {/* NGO */}
-            <div className="flex items-center justify-between p-5 bg-[#0B0F19] border border-[#1f2937] rounded-2xl mb-10">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-xl shrink-0">🚚</div>
-                <div>
-                  <h3 className="text-white font-bold text-lg">Community Hope Center</h3>
-                  <p className="text-sm text-gray-500">Pick-up Volunteer assigned</p>
+            <div className="p-5 bg-[#0B0F19] border border-[#1f2937] rounded-2xl mb-10">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-xl shrink-0">🚚</div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Community Hope Center</h3>
+                    <p className="text-sm text-gray-500">Pick-up Volunteer assigned</p>
+                  </div>
                 </div>
+                <button className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors border border-primary/20">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                </button>
               </div>
-              <button className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors border border-primary/20">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              </button>
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-xs font-bold px-3 py-1 rounded-lg bg-primary/10 text-primary border border-primary/20">2.3 km away</span>
+                <span className="text-xs font-bold px-3 py-1 rounded-lg bg-success/10 text-success border border-success/20">96% acceptance</span>
+                <span className="text-xs font-bold px-3 py-1 rounded-lg bg-white/5 text-gray-400 border border-[#1f2937]">Feeds 120+ daily</span>
+              </div>
             </div>
 
             {/* Vertical Timeline */}
