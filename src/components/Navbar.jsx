@@ -23,6 +23,7 @@ export default function Navbar() {
           { path: '/', label: 'Home' },
           { path: '/donor/dashboard', label: 'Donor Hub' },
           { path: '/donor/upload', label: 'Log Donation' },
+          { path: '/donor/tracking', label: 'Live Tracking' },
           { path: '/donor/impact', label: 'Impact' },
         ]
       : [
