@@ -107,7 +107,19 @@ export default function Tracking() {
                   {isComplete ? 'Delivered ✓' : `${eta} min`}
                 </motion.h2>
               </AnimatePresence>
-              {!isComplete && <p className="text-gray-400 font-medium text-lg mt-1">Estimated Arrival</p>}
+              {!isComplete && (
+                <>
+                  <p className="text-gray-400 font-medium text-lg mt-1">Estimated Arrival</p>
+                  <div className="mt-4 w-full h-1.5 bg-[#1f2937] rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-primary to-success rounded-full shadow-[0_0_6px_rgba(0,198,255,0.5)]"
+                      initial={{ width: '0%' }}
+                      animate={{ width: `${Math.max(0, ((14 - eta) / 14) * 100)}%` }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                    />
+                  </div>
+                </>
+              )}
             </div>
 
             {/* NGO */}
