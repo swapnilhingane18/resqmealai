@@ -143,6 +143,47 @@ export default function Tracking() {
               </div>
             </div>
 
+            {/* Live Map Illusion */}
+            {!isComplete && (
+              <div className="mb-10">
+                <p className="text-sm font-bold text-gray-400 mb-3">📍 Volunteer is <span className="text-primary">2.3</span> km away</p>
+                <div 
+                  className="relative w-full h-36 rounded-xl bg-[#0B0F19] border border-[#1f2937] overflow-hidden"
+                  style={{ backgroundImage: 'linear-gradient(rgba(31, 41, 55, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 41, 55, 0.3) 1px, transparent 1px)', backgroundSize: '1.5rem 1.5rem' }}
+                >
+                  {/* Route line */}
+                  <div className="absolute top-1/2 left-8 right-8 -translate-y-1/2">
+                    <div className="w-full h-[2px] bg-[#1f2937] rounded-full" />
+                    <div className="absolute inset-0 h-[2px] bg-gradient-to-r from-primary/60 via-primary to-primary/60 rounded-full opacity-60" style={{ maskImage: 'linear-gradient(90deg, black 60%, transparent 100%)' }} />
+                    {/* Dashed overlay */}
+                    <div className="absolute inset-0 h-[2px] rounded-full" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 6px, #1f2937 6px, #1f2937 12px)' }} />
+                  </div>
+
+                  {/* Moving dot */}
+                  <div className="absolute top-1/2 -translate-y-1/2 animate-[mapMove_4s_ease-in-out_infinite] left-8">
+                    <div className="relative">
+                      <div className="absolute -inset-3 rounded-full bg-primary/20 animate-ping" />
+                      <div className="absolute -inset-2 rounded-full bg-primary/10 shadow-[0_0_16px_rgba(0,198,255,0.5)]" />
+                      <div className="relative w-4 h-4 rounded-full bg-primary border-2 border-white shadow-[0_0_10px_rgba(0,198,255,0.8)]" />
+                    </div>
+                  </div>
+
+                  {/* Origin label */}
+                  <div className="absolute bottom-3 left-8 text-[10px] font-bold text-gray-500 uppercase tracking-wider">You</div>
+
+                  {/* Destination marker */}
+                  <div className="absolute top-1/2 right-8 -translate-y-1/2 flex flex-col items-center">
+                    <div className="w-5 h-5 rounded-full border-2 border-success bg-success/20 flex items-center justify-center shadow-[0_0_12px_rgba(16,185,129,0.5)]">
+                      <div className="w-1.5 h-1.5 rounded-full bg-success" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-3 right-6 text-[10px] font-bold text-gray-500 uppercase tracking-wider">NGO</div>
+
+                  <style>{`@keyframes mapMove { 0%, 100% { left: 2rem; } 50% { left: calc(100% - 4rem); } }`}</style>
+                </div>
+              </div>
+            )}
+
             {/* Vertical Timeline */}
             <div className="relative pl-8">
               {/* Track line background */}
