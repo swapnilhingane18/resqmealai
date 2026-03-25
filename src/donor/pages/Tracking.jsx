@@ -253,6 +253,37 @@ export default function Tracking() {
 
           </div>
         </div>
+
+        {/* Impact Celebration */}
+        <AnimatePresence>
+          {isComplete && (
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+              className="mt-8 bg-gradient-to-br from-[#111827] to-[#0B0F19] border border-success/30 rounded-3xl p-8 text-center shadow-[0_0_40px_rgba(16,185,129,0.1)] relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-success/10 rounded-full blur-[80px] pointer-events-none" />
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🎉</div>
+                <h3 className="text-2xl font-black text-white mb-2">Food Rescued Successfully!</h3>
+                <p className="text-gray-400 font-medium mb-6">Your donation will feed 20+ people today.</p>
+                <div className="flex items-center justify-center gap-6 text-sm">
+                  <div>
+                    <span className="text-2xl font-black text-primary block">684</span>
+                    <span className="text-gray-500 font-bold uppercase tracking-wider text-xs">Total Meals</span>
+                  </div>
+                  <div className="w-px h-10 bg-[#1f2937]" />
+                  <div>
+                    <span className="text-2xl font-black text-success block">855 kg</span>
+                    <span className="text-gray-500 font-bold uppercase tracking-wider text-xs">CO₂ Saved</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </div>
   );
